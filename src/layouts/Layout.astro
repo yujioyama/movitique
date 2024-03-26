@@ -17,8 +17,103 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      import "../js/common.ts";
+    </script>
   </head>
   <body>
     <slot />
   </body>
 </html>
+
+<style is:global lang="scss">
+  body {
+    background-color: $black;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    color: $white;
+    line-height: 1.35;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .list {
+    &__item {
+      margin-top: 40px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .movieList {
+    position: relative;
+    margin-top: 15px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 100%;
+      background-image: linear-gradient(to left, $black, rgba(0, 0, 0, 0));
+    }
+    &__list {
+      display: flex;
+      gap: 30px;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__item {
+      flex-shrink: 0;
+      width: 150px;
+    }
+    &__image {
+      height: 225px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    &__title {
+      margin-top: 5px;
+    }
+
+    &__rating {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      color: #8d8d8d;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        background-image: url("../images/icon_star.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+</style>

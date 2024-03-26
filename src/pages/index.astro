@@ -1,9 +1,46 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import mvImage from "../images/img_mv.jpg";
+
+const title = "Movitique ";
 ---
 
-<Layout title="Movie Critique Village">
-  <main></main>
+<Layout title={title}>
+  <main class="main">
+    <div class="mv">
+      <Image
+        src={mvImage}
+        alt={title}
+        width={1200}
+        height={423}
+        class="mvImage"
+      />
+    </div>
+
+    <ul class="list" data-container></ul>
+  </main>
 </Layout>
 
-<style></style>
+<style lang="scss">
+  .main {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background: $black;
+  }
+
+  .mvImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tab {
+    display: flex;
+  }
+
+  .tabContents {
+    border: 1px solid black;
+  }
+</style>
