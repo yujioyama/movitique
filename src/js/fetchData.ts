@@ -23,15 +23,21 @@ const fetchData = async <T extends object>(
   //   .catch((err) => console.error(err));
 
   // awaitで記述した場合
-  const response = await fetch(url, options);
+  try {
+    const response = await fetch(url, options);
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const json = await response.json();
+
+    return json.results as T[];
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
   }
-
-  const json = await response.json();
-
-  return json.results as T[];
 };
 
 export default fetchData;
